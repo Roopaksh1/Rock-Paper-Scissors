@@ -3,13 +3,64 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>ROCK PAPER SCISSOR</title>
 </head>
 
 <body>
-    <h1>Rock Paper Scissor Game</h1>
-    <p>Open console to see results</p>
-    <script src="script.js"></script>
+
+    <h1 class="heading">Rock Paper Scissor Game</h1>
+
+    <div class="wrapper">
+        <div class="menu">
+            <button class="start-btn btn">Start</button>
+            <button class="instruction-btn btn">Instruction</button>
+            <button class="about-btn btn">About</button>
+        </div>
+
+        <div class="game-screen hidden">
+
+            <div class="result-screen">
+                <div class="result players">
+                    <p>Player(<span class="player-score">0</span>)</p>
+                    <p>Computer(<span class="computer-score">0</span>)</p>
+                </div>
+                <div class="result game-one">
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="result game-two">
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="result game-three">
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="result game-four">
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="result game-five">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="game-btn">
+                <button class="rock btn">Rock</button>
+                <button class="paper btn">Paper</button>
+                <button class="scissor btn">Scissor</button>
+            </div>
+
+            <p class="result-declare"></p>
+
+            <button class="home-btn btn">Home</button>
+
+        </div>
+
+    </div>
 </body>
 
 </html>

@@ -14,10 +14,19 @@ const homeButton = document.querySelector(".home-btn");
 const gameScreen = document.querySelector(".game-screen");
 
 startButton.addEventListener("click", Start);
-rockButton.addEventListener("click", game);
-paperButton.addEventListener("click", game);
-scissorButton.addEventListener("click", game);
+rockButton.addEventListener("click", playerChoice);
+paperButton.addEventListener("click", playerChoice);
+scissorButton.addEventListener("click", playerChoice);
 homeButton.addEventListener("click", home);
+
+function playerChoice(e){
+    if(e.target === rockButton)
+        return game("Rock");
+    else if(e.target === paperButton)
+        return game("Paper");
+    else
+        return game("Scissor");
+}
 
 function home() {
     gameScreen.classList.add("hidden");
@@ -31,7 +40,7 @@ function Start() {
     heading.textContent = "Choose Your Object";
     menu.classList.add("hidden");
     gameScreen.classList.remove("hidden");
-    document.body.style.background = "black";
+    document.body.style.background = "#4a4e69";
 }
 
 
@@ -54,15 +63,14 @@ function playRound(playerSelection, computerSelection) {
         else if (playerSelection === computerSelection)
             return 0;
         else
-            console.log(`YOU LOSE! ${computerSelection} beats ${playerSelection}`);
-        return -1;
+            return -1;
     }
 }
 
-function game(e) {
+function game(pChoice) {
 
     computerSelection = getComputerChoice();
-    playerSelection = e.target.textContent;
+    playerSelection = pChoice;
 
     const pScore = document.querySelector(".player-score");
     const cScore = document.querySelector(".computer-score");

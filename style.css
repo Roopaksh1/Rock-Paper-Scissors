@@ -42,16 +42,20 @@ body{
     justify-content: space-around;
 }
 
-.result-screen{
-    width: 50rem;
-    height: 50rem;
+.result-screen-wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 40rem;
     border-radius: 1.5rem;
     border: solid .2rem white;
     background-color: lightgray;
     padding: .5rem;
-    box-sizing: border-box;
+}
+
+.result-screen{
+    width: 70rem;
+    height: 30rem;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
 }
 
@@ -75,28 +79,67 @@ body{
     font-size: 5rem;
     background-color: #fca311;
     border-radius: 1.5rem;
+    transition: all 0.8s ease;
+}
+.rock:hover, .paper:hover, .scissor:hover{
+    transform: scale(1.1);
 }
 
 .home-btn{
     width: auto;
 }
 
-.result{
-    font-size: 2.5rem;
-    display: flex;
-    justify-content: space-around;
-}
-
-.players{
+.player-screen, .computer-screen{
+    width: 30rem;
+    height: 30rem;
     font-size: 3rem;
-    border-bottom: .2rem solid black;
     padding: .3rem;
+    text-align: center;
 }
 
-.result-declare{
+.player-score, .computer-score{
+    width: 5rem;
+    align-self: flex-start;
+    font-size: 4rem;
+}
+
+.player-score{
+    text-align: left;
+}
+
+.computer-score{
+    text-align: right;
+}
+
+.game-result{
     font-size: 3rem;
     color: white;
     letter-spacing: .5rem;
+}
+
+.choice-rock, .choice-paper, .choice-scissor{
+    width: 10rem;
+    height: 10rem;
+    font-size: 5rem;
+    background-color: #fca311;
+    border: solid .3rem black;
+    border-radius: 1.5rem;
+    transition: all 0.8s ease;
+    line-height: 10rem;
+}
+
+.player-choice, .computer-choice{
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-result{
+    height: 10rem;
+    font-size: 5rem;
+    text-align: center;
 }
 
 .hidden{

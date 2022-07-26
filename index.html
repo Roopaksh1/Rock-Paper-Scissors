@@ -21,29 +21,28 @@
 
         <div class="game-screen hidden">
 
-            <div class="result-screen">
-                <div class="result players">
-                    <p>Player(<span class="player-score">0</span>)</p>
-                    <p>Computer(<span class="computer-score">0</span>)</p>
+            <div class="result-screen-wrapper">
+                <div class="result-screen">
+                    <div class="player-screen">
+                        <p>You</p>
+                        <div class="player-choice">
+                            <div class="choice-rock hidden">&#9994;</div>
+                            <div class="choice-paper hidden">&#9995;</div>
+                            <div class="choice-scissor hidden">&#9996;</div>
+                        </div>
+                    </div>
+                    <div class="player-score"></div>
+                    <div class="computer-score"></div>
+                    <div class="computer-screen">
+                        <p>Computer</p>
+                        <div class="computer-choice">
+                            <div class="choice-rock hidden">&#9994;</div>
+                            <div class="choice-paper hidden">&#9995;</div>
+                            <div class="choice-scissor hidden">&#9996;</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="result game-one">
-                    <p></p>
-                    <p></p>
-                </div>
-                <div class="result game-two">
-                    <p></p>
-                    <p></p>
-                </div>
-                <div class="result game-three">
-                    <p></p>
-                    <p></p>
-                </div>
-                <div class="result game-four">
-                    <p></p>
-                    <p></p>
-                </div>
-                <div class="result game-five">
-                    <p></p>
+                <div class="match-result">
                     <p></p>
                 </div>
             </div>
@@ -53,8 +52,6 @@
                 <button class="paper">&#9995;</button>
                 <button class="scissor">&#9996;</button>
             </div>
-
-            <p class="result-declare"></p>
 
             <button class="home-btn btn">Home</button>
 

@@ -1,4 +1,3 @@
-let playerSelection;
 let computerSelection;
 let computerScore = 0;
 let playerScore = 0;
@@ -11,23 +10,19 @@ const rockButton = document.querySelector(".rock");
 const paperButton = document.querySelector(".paper");
 const scissorButton = document.querySelector(".scissor");
 const homeButton = document.querySelector(".home-btn");
+const gameButtons = document.querySelector(".game-btn")
 const gameScreen = document.querySelector(".game-screen");
+const matchResult = document.querySelector(".match-result p");
+const pScore = document.querySelector(".player-score");
+const cScore = document.querySelector(".computer-score");
 
 startButton.addEventListener("click", Start);
-rockButton.addEventListener("click", playerChoice);
-paperButton.addEventListener("click", playerChoice);
-scissorButton.addEventListener("click", playerChoice);
+rockButton.addEventListener("click", getPlayerChoice);
+paperButton.addEventListener("click", getPlayerChoice);
+scissorButton.addEventListener("click", getPlayerChoice);
 homeButton.addEventListener("click", home);
 
-function playerChoice(e){
-    if(e.target === rockButton)
-        return game("Rock");
-    else if(e.target === paperButton)
-        return game("Paper");
-    else
-        return game("Scissor");
-}
-
+//function to hide game Screen and show home screen
 function home() {
     gameScreen.classList.add("hidden");
     menu.classList.remove("hidden");
@@ -35,6 +30,7 @@ function home() {
     document.body.style.backgroundSize = "100rem 100rem";
 }
 
+//function to hide home screen and show game screen
 function Start() {
     reset();
     heading.textContent = "Choose Your Object";
@@ -54,6 +50,41 @@ function getComputerChoice() {
         return "Scissor";
 }
 
+function getPlayerChoice(e) {
+    if (e.target === rockButton)
+        return game("Rock");
+    else if (e.target === paperButton)
+        return game("Paper");
+    else
+        return game("Scissor");
+}
+
+function displayChoice(playerSelection, computerSelection) {
+    const pChoice = Array.from(document.querySelector(".player-choice").children);
+    const cChoice = Array.from(document.querySelector(".computer-choice").children);
+
+    pChoice.forEach(item => item.classList.add("hidden"));
+    cChoice.forEach(item => item.classList.add("hidden"));
+
+    switch (playerSelection) {
+        case "Rock": pChoice[0].classList.remove("hidden");
+            break;
+        case "Paper": pChoice[1].classList.remove("hidden");
+            break;
+        case "Scissor": pChoice[2].classList.remove("hidden");
+            break;
+    }
+
+    switch (computerSelection) {
+        case "Rock": cChoice[0].classList.remove("hidden");
+            break;
+        case "Paper": cChoice[1].classList.remove("hidden");
+            break;
+        case "Scissor": cChoice[2].classList.remove("hidden");
+            break;
+    }
+}
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "Rock" || playerSelection === "Paper" || playerSelection === "Scissor") {
         if ((playerSelection === "Rock" && computerSelection === "Scissor") ||
@@ -67,40 +98,41 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(pChoice) {
+function game(playerSelection) {
 
     computerSelection = getComputerChoice();
-    playerSelection = pChoice;
 
-    const pScore = document.querySelector(".player-score");
-    const cScore = document.querySelector(".computer-score");
+    displayChoice(playerSelection, computerSelection);
+
     let result = playRound(playerSelection, computerSelection);
     round++;
 
-    if (result === 1)
+    if (result === 1){
         playerScore++;
-    else if (result === -1)
+        pScore.textContent = `${playerScore}`;
+        cScore.textContent = `${computerScore}`;
+        matchResult.textContent = `${playerSelection} beats ${computerSelection}`
+    }
+    else if (result === -1){
         computerScore++;
-
-    pScore.textContent = `${playerScore}`;
-    cScore.textContent = `${computerScore}`;
-
-    const resultText = document.querySelector(".result-screen");
-    const resultDeclare = document.querySelector(".result-declare");
-
-    resultText.children[round].children[0].textContent = `${playerSelection}`;
-    resultText.children[round].children[1].textContent = `${computerSelection}`;
+        pScore.textContent = `${playerScore}`;
+        cScore.textContent = `${computerScore}`;
+        matchResult.textContent = `${computerSelection} beats ${playerSelection}`
+    }
+    else{
+        pScore.textContent = `${playerScore}`;
+        cScore.textContent = `${computerScore}`;
+        matchResult.textContent = `Tie`;
+    }
 
     if (round === 5) {
-        rockButton.classList.add("hidden");
-        paperButton.classList.add("hidden");
-        scissorButton.classList.add("hidden");
+        gameButtons.classList.add("hidden");
         if (playerScore > computerScore)
-            resultDeclare.textContent = `Player Wins! ${playerScore} - ${computerScore}`
+            matchResult.textContent = "You Win";
         else if (playerScore === computerScore)
-            resultDeclare.textContent = `DRAW! ${playerScore} - ${computerScore}`
+            matchResult.textContent = "Draw";
         else
-            resultDeclare.textContent = `Computer Wins! ${playerScore} - ${computerScore}`
+            matchResult.textContent = "Computer Win";
     }
 }
 
@@ -108,18 +140,14 @@ function reset() {
     computerScore = 0;
     playerScore = 0;
     round = 0;
-    rockButton.classList.remove("hidden");
-    paperButton.classList.remove("hidden");
-    scissorButton.classList.remove("hidden");
+    gameButtons.classList.remove("hidden");
+    pScore.textContent = "0";
+    cScore.textContent = "0";
+    matchResult.textContent = "";
 
-    const pScore = document.querySelector(".player-score");
-    const cScore = document.querySelector(".computer-score");
-    pScore.textContent = 0;
-    cScore.textContent = 0;
+    const pChoice = Array.from(document.querySelector(".player-choice").children);
+    const cChoice = Array.from(document.querySelector(".computer-choice").children);
 
-    const resultText = document.querySelector(".result-screen").children;
-    for(let i = 1; i < resultText.length; i++){
-        resultText[i].children[0].textContent = "";
-        resultText[i].children[1].textContent = "";
-    }
+    pChoice.forEach(item => item.classList.add("hidden"));
+    cChoice.forEach(item => item.classList.add("hidden"));
 }

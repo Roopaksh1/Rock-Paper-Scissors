@@ -24,6 +24,7 @@ homeButton.addEventListener("click", home);
 
 //function to hide game Screen and show home screen
 function home() {
+    reset();
     gameScreen.classList.add("hidden");
     menu.classList.remove("hidden");
     document.body.style.background = "url(images/bg.jpg) no-repeat center center fixed";
@@ -32,7 +33,6 @@ function home() {
 
 //function to hide home screen and show game screen
 function Start() {
-    reset();
     heading.textContent = "Choose Your Object";
     menu.classList.add("hidden");
     gameScreen.classList.remove("hidden");
@@ -137,6 +137,7 @@ function game(playerSelection) {
 }
 
 function reset() {
+    heading.textContent = "Rock Paper Scissor"
     computerScore = 0;
     playerScore = 0;
     round = 0;

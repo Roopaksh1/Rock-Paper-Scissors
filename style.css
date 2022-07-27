@@ -32,6 +32,31 @@ body{
     margin-top: 20rem;
 }
 
+.menu-three-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.instruction-screen{
+    width: 30rem;
+    border-radius: 1.5rem;
+    background-color: rgba(173, 255, 47, 0.6);
+    font-size: 3rem;
+    line-height: 5rem;
+}
+
+.about-screen{
+    width: 30rem;
+    border-radius: 1.5rem;
+    background-color: rgba(173, 255, 47, 0.6);
+    font-size: 3rem;
+    line-height: 5rem;
+    text-align: center;
+}
+
 .game-screen{
     width: 80rem;
     height: 80rem;

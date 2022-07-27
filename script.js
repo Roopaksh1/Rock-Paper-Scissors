@@ -4,6 +4,9 @@ let playerScore = 0;
 
 const heading = document.querySelector(".heading");
 const menu = document.querySelector(".menu");
+const instructionButton = document.querySelector(".instruction-btn");
+const aboutButton = document.querySelector(".about-btn");
+const backButton = document.querySelector(".back-btn");
 const startButton = document.querySelector(".start-btn");
 const rockButton = document.querySelector(".rock");
 const paperButton = document.querySelector(".paper");
@@ -15,14 +18,17 @@ const matchResult = document.querySelector(".match-result p");
 const pScore = document.querySelector(".player-score");
 const cScore = document.querySelector(".computer-score");
 
-startButton.addEventListener("click", Start);
+startButton.addEventListener("click", showGameScreen);
+instructionButton.addEventListener("click", showInstruction);
+aboutButton.addEventListener("click", showAbout);
 rockButton.addEventListener("click", getPlayerChoice);
 paperButton.addEventListener("click", getPlayerChoice);
 scissorButton.addEventListener("click", getPlayerChoice);
-homeButton.addEventListener("click", home);
+homeButton.addEventListener("click", showHomeScreen);
+backButton.addEventListener("click", backToHomeScreen)
 
 //function to hide game Screen and show home screen
-function home() {
+function showHomeScreen() {
     reset();
     gameScreen.classList.add("hidden");
     menu.classList.remove("hidden");
@@ -30,8 +36,27 @@ function home() {
     document.body.style.backgroundSize = "100rem 100rem";
 }
 
+function showInstruction(){
+    menu.children[0].classList.add("hidden");
+    menu.children[1].classList.remove("hidden");
+    backButton.classList.remove("hidden");
+}
+
+function showAbout(){
+    menu.children[0].classList.add("hidden");
+    menu.children[2].classList.remove("hidden");
+    backButton.classList.remove("hidden");
+}
+
+function backToHomeScreen(){
+    menu.children[0].classList.remove("hidden");
+    menu.children[1].classList.add("hidden");
+    menu.children[2].classList.add("hidden");
+    backButton.classList.add("hidden");
+}
+
 //function to hide home screen and show game screen
-function Start() {
+function showGameScreen() {
     heading.textContent = "First To Five Wins";
     menu.classList.add("hidden");
     gameScreen.classList.remove("hidden");
@@ -51,11 +76,11 @@ function getComputerChoice() {
 
 function getPlayerChoice(e) {
     if (e.target === rockButton)
-        return game("Rock");
+        return startGame("Rock");
     else if (e.target === paperButton)
-        return game("Paper");
+        return startGame("Paper");
     else
-        return game("Scissor");
+        return startGame("Scissor");
 }
 
 function displayChoice(playerSelection, computerSelection) {
@@ -97,7 +122,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(playerSelection) {
+function startGame(playerSelection) {
 
     computerSelection = getComputerChoice();
 

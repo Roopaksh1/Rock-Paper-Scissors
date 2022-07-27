@@ -1,7 +1,6 @@
 let computerSelection;
 let computerScore = 0;
 let playerScore = 0;
-let round = 0;
 
 const heading = document.querySelector(".heading");
 const menu = document.querySelector(".menu");
@@ -33,7 +32,7 @@ function home() {
 
 //function to hide home screen and show game screen
 function Start() {
-    heading.textContent = "Choose Your Object";
+    heading.textContent = "First To Five Wins";
     menu.classList.add("hidden");
     gameScreen.classList.remove("hidden");
     document.body.style.background = "#4a4e69";
@@ -105,7 +104,6 @@ function game(playerSelection) {
     displayChoice(playerSelection, computerSelection);
 
     let result = playRound(playerSelection, computerSelection);
-    round++;
 
     if (result === 1){
         playerScore++;
@@ -125,12 +123,10 @@ function game(playerSelection) {
         matchResult.textContent = `Tie`;
     }
 
-    if (round === 5) {
+    if (playerScore === 5 || computerScore === 5) {
         gameButtons.classList.add("hidden");
-        if (playerScore > computerScore)
+        if (playerScore === 5)
             matchResult.textContent = "You Win";
-        else if (playerScore === computerScore)
-            matchResult.textContent = "Draw";
         else
             matchResult.textContent = "Computer Win";
     }
